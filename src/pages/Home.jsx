@@ -1,27 +1,27 @@
 import React from "react";
 import Navbar from "../components/fragments/Navbar";
+import { Footer, Main } from "../components/fragments/Card";
+import { games } from "../utils/data";
 
 const Home = () => {
-  return (
-    <div>
-      <Navbar />
-      <div className="p-4 h-screen">
-        <div className="max-w-56 shadow-md rounded-lg overflow-hidden cursor-pointer">
-          <div className="max-h-60 hover:brightness-75 transition-all ease-linear">
-            <img src="/images/viewfinder.jpg" />
-          </div>
-          <div className="backdrop-blur-[1px] text-white">
-            <h1 className="font-semibold text-lg px-2">View Finder</h1>
-            <h3 className="text-sm px-2">Rp20000</h3>
-            <div className="flex justify-around mt-2 py-1">
-              <button>Beli</button>
-              <button className="flex items-center">Add To Cart</button>
-            </div>
-          </div>
-        </div>
+   return (
+      <div>
+         <Navbar />
+         <div className="p-4 h-screen flex flex-wrap gap-4">
+            {games.map((item) => {
+               return (
+                  <div
+                     className="max-w-56 shadow-md rounded-lg overflow-hidden h-fit ml-2 cursor-pointer"
+                     key={item.id}
+                  >
+                     <Main img={item.poster} />
+                     <Footer price={item.price} title={item.title} />
+                  </div>
+               );
+            })}
+         </div>
       </div>
-    </div>
-  );
+   );
 };
 
 export default Home;
